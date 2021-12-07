@@ -1,0 +1,8 @@
+from abc import ABC
+from model.square.sprite import Sprite
+from model.square.square import Square
+
+
+class Obstacle(Square, ABC):
+    def __init__(self, image : str):
+        Square.__init__(self, False, Sprite(image))
