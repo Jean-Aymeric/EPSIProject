@@ -20,7 +20,8 @@ class Controller(IController):
         self.__view.setController(self)
 
     def start(self):
-        self.__model.addStar()
+        for i in range(100):
+            self.__model.addStar()
         while self.__running:
             self.__view.show()
             for mobile in self.__model.getMobiles():

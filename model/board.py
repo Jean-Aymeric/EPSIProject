@@ -1,4 +1,7 @@
+from random import randint
+
 from model.square.blacksquare import BlackSquare
+from model.square.greensquare import GreenSquare
 from model.square.redsquare import RedSquare
 from model.square.square import Square
 from model.square.obstacle import Obstacle
@@ -17,15 +20,15 @@ class Board(IBoard):
         self.__width = width
         self.__height = height
         self.__squares = [[None] * width for _ in range(height)]
-        self.__obstacles = [RedSquare()]
+        self.__obstacles = [RedSquare(), GreenSquare()]
         self.__freeSquares = [BlackSquare()]
         self.__fillBoard()
 
     def __fillBoard(self):
         for i in range(0, self.__width):
             for j in range(0, self.__height):
-                if ((i + j) % 2 == 0) and (i % 2 == 0):
-                    self.__squares[j][i] = self.__obstacles[0]
+                if ((i + j) % 3 == 0) and (i % 3 == 0):
+                    self.__squares[j][i] = self.__obstacles[randint(0,1)]
                 else:
                     self.__squares[j][i] = self.__freeSquares[0]
 

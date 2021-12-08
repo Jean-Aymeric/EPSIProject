@@ -12,7 +12,7 @@ class View(IView):
     __zoom: int
 
     def __init__(self):
-        self.__zoom = 40
+        self.__zoom = 10
 
     def setModel(self, model: IModel):
         self.__model = model

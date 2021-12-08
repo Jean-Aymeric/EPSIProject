@@ -1,3 +1,5 @@
+from random import randint
+
 from contract.imodel import IModel
 from model.board import Board
 from model.mobile.mobile import Mobile, IMobile
@@ -9,7 +11,7 @@ class Model(IModel):
     __mobiles: [Mobile]
 
     def __init__(self):
-        self.__board = Board(49, 29)
+        self.__board = Board(50, 50)
         self.__mobiles = []
 
     def getBoard(self):
@@ -20,7 +22,7 @@ class Model(IModel):
         mobile.setModel(self)
 
     def addStar(self) -> None:
-        self.__addMobile(Star(1, 1))
+        self.__addMobile(Star(randint(1, self.getBoard().getWidth() - 1), randint(1, self.getBoard().getHeight() - 1)))
 
     def getMobiles(self) -> [IMobile]:
         return self.__mobiles
