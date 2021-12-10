@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from contract.imodel import IModel
 from contract.iview import IView
+from contract.action import Action
 
 
 class IController(ABC):
@@ -18,4 +19,8 @@ class IController(ABC):
 
     @abstractmethod
     def viewIsClosed(self) -> None:
+        ...
+
+    @abstractmethod
+    def performAction(self, action: Action) -> None:
         ...
