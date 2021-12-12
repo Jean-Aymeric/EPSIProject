@@ -27,7 +27,7 @@ class Board(IBoard):
     def __fillBoard(self):
         for i in range(0, self.__width):
             for j in range(0, self.__height):
-                if ((i + j) % 3 == 0) and (i % 3 == 0):
+                if ((i + j) % 2 == 0) and (i % 2 == 0):
                     self.__squares[j][i] = self.__obstacles[randint(0,1)]
                 else:
                     self.__squares[j][i] = self.__freeSquares[0]

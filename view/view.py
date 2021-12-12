@@ -1,9 +1,10 @@
-from tkinter import Tk, Canvas
+from tkinter import Tk, Canvas, Event
 from PIL import Image, ImageTk
 
 from contract.icontroller import IController
 from contract.imodel import IModel, IMobile, IBoard, ISquare, ISprite
 from contract.iview import IView
+from contract.action import Action
 
 
 class View(IView):
@@ -12,7 +13,7 @@ class View(IView):
     __zoom: int
 
     def __init__(self):
-        self.__zoom = 10
+        self.__zoom = 30
 
     def setModel(self, model: IModel):
         self.__model = model
@@ -60,5 +61,16 @@ class View(IView):
         self.__canvas.configure(bg="Black")
         self.__canvas.pack(fill="both", expand=True)
         self.__window.protocol("WM_DELETE_WINDOW", self.__onClosing)
+        self.__window.bind("<Key>", self.manageKeyEvent)
         self.__window.deiconify()
         self.__window.update()
+
+    def manageKeyEvent(self, event: Event):
+        if event.keysym == "Up":
+            self.__controller.performAction(Action.UP)
+        elif event.keysym == "Right":
+            self.__controller.performAction(Action.RIGHT)
+        elif event.keysym == "Down":
+            self.__controller.performAction(Action.DOWN)
+        elif event.keysym == "Left":
+            self.__controller.performAction(Action.LEFT)
